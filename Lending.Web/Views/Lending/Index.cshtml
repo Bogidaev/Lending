@@ -6,16 +6,19 @@
 <script>
     $(function () {
         $('.add').click(function () {
-            debugger;
             var phone = '+639' + $('#phone').val();
 
+            if (phone.length = 4) {
+                alert("Некорректный номер телефона");
+                return;
+            }
+            
             $.post( '@Url.Action("SendRequest", "Lending")', { phone: phone })
               .done(function( data ) {
                     $('#response').text(data);
               });
 
         });
-        //+63 99 89 87 80 39
 
         $("#phone").mask("999999999");
 
