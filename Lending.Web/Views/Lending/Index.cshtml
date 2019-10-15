@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+    $(function () {
+        $('.add').click(function () {
+            debugger;
+            var phone = '+639' + $('#phone').val();
+
+            $.post( '@Url.Action("SendRequest", "Lending")', { phone: phone })
+              .done(function( data ) {
+                    $('#response').text(data);
+              });
+
+        });
+        //+63 99 89 87 80 39
+
+        $("#phone").mask("999999999");
+
+
+    })
+</script>
+<h2>Index</h2>
+
+
+
+
+<div class="input-group">
+    <span class="input-group-addon">+639</span>
+    <input type="text" class="form-control" placeholder="Phone" id="phone">
+    <button type="submit" class="add btn btn-default">Отправить</button>
+</div>
+
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Panel heading</div>
+    <div class="panel-body">
+        <p id="response"></p>
+    </div>
+</div>
